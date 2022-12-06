@@ -1,12 +1,10 @@
 const grid = document.querySelector('#grid');
+const resetGridButton = document.querySelector('#resetGrid');
+const canvasSize = 800;
 
-// create 16x16 grid of divs 
-// create divs with javascript
-
-function createGrid() {
-    //# of rows & columns to create grid
-    const rowCount = 16;
-    const columnCount = 16;
+function createGrid(rowCount, columnCount) {
+    const squareWidth = canvasSize / columnCount;
+    const squareLength = canvasSize / rowCount;
 
     //create one row of squares
     function createGridRow() {
@@ -19,10 +17,23 @@ function createGrid() {
         }
         grid.append(row);
     }
-
+    
     for(let i=0; i < rowCount; i++) {
         createGridRow();
+        let gridSquares = document.querySelectorAll("div.square"); // return NodeList
+        let gridSquaresArray = [...gridSquares]; //convert NodeList into Array using spread syntax 
+        gridSquaresArray.forEach(square => {
+            square.style.width = `${squareWidth}px`;
+            square.style.height = `${squareLength}px`;
+        })
     }
+
+    resetGridButton.addEventListener('click', () => {
+        const rowCount = prompt('How many rows? (Max 100)');
+        const columnCount = prompt('How many columns? (Max 100)');
+        grid.innerHTML = '';
+        createGrid(rowCount, columnCount);
+    })
 }
 
-createGrid();
+createGrid(16,16);

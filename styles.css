@@ -1,16 +1,13 @@
 .square {
-    width: 30px;
-    height: 30px;
     border: 0.5px solid black;
-}
-
-.row {
-    display: inline-flex;
-    flex: auto;
-    width: 100%;
+    padding:0;
+    margin: 0;
 }
 
 #grid {
-    display: inline-flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-auto-rows: auto; 
+    grid-auto-flow: column;
+    justify-content: center;
+    width: 800px;
 }
