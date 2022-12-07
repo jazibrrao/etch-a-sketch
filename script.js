@@ -2,6 +2,13 @@ const grid = document.querySelector('#grid');
 const resetGridButton = document.querySelector('#resetGrid');
 const canvasSize = 800;
 
+resetGridButton.addEventListener('click', () => {
+    const rowCount = prompt('How many rows? (Max 100)');
+    const columnCount = prompt('How many columns? (Max 100)');
+    grid.innerHTML = '';
+    createGrid(rowCount, columnCount);
+})
+
 function createGrid(rowCount, columnCount) {
     const squareWidth = canvasSize / columnCount;
     const squareLength = canvasSize / rowCount;
@@ -27,13 +34,6 @@ function createGrid(rowCount, columnCount) {
             square.style.height = `${squareLength}px`;
         })
     }
-
-    resetGridButton.addEventListener('click', () => {
-        const rowCount = prompt('How many rows? (Max 100)');
-        const columnCount = prompt('How many columns? (Max 100)');
-        grid.innerHTML = '';
-        createGrid(rowCount, columnCount);
-    })
 }
 
 createGrid(16,16);
